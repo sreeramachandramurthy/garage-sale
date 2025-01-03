@@ -1,0 +1,56 @@
+<nav class="navbar fixed-top navbar-expand-md bg-body-tertiary">
+	<div class="container-fluid">
+    <span class="navbar-brand">Garage Sale</span>
+		<button
+			class="navbar-toggler"
+			type="button"
+			aria-controls="navbarContent"
+			[attr.aria-expanded]="!collapsed"
+			aria-label="Toggle Navigation"
+			(click)="toggleNavigation()"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item">
+          <button class="nav-link" tabindex="0" (click)="openHomePage()">
+            Home
+          </button>
+        </li>
+				<li class="nav-item" ngbDropdown>
+					<button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownItems">
+            Items
+          </button>
+					<div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownItems">
+            @for (item of items; track $index) {
+              <button ngbDropdownItem (click)="viewItem(item)">
+                {{item?.name}}
+              </button>
+            }
+					</div>
+				</li>
+
+				<li class="nav-item" ngbDropdown>
+					<button class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdownCategory">
+            Category
+          </button>
+					<div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu aria-labelledby="navbarDropdownCategory">
+            @for (category of categories; track $index) {
+              <button ngbDropdownItem (click)="viewCategory(category)">
+                {{category}}
+              </button>
+            }
+					</div>
+				</li>
+
+				<li class="nav-item">
+          <button class="btn" (click)="switchTheme()">
+            <ng-icon [svg]="icon"></ng-icon>
+          </button>
+        </li>
+			</ul>
+		</div>
+	</div>
+</nav>

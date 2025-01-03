@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-sm">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <ngb-carousel
+          #carousel
+          [interval]="1000"
+          [pauseOnHover]="true"
+          [pauseOnFocus]="true"
+          (slide)="onSlide($event)"
+          class="bg-body"
+        >
+          @for (image of item?.images; track image) {
+            <ng-template ngbSlide>
+              <div class="carousel-caption">
+                <h3>{{item?.name}}</h3>
+              </div>
+              <div class="picsum-img-wrapper">
+                <img [src]="image" alt="Sell My Stuff" class="img-width"/>
+              </div>
+            </ng-template>
+          }
+        </ngb-carousel>
+      </li>
+      <li class="list-group-item active fw-bold">
+        {{item?.name}}
+      </li>
+      <li class="list-group-item text-right">
+        <button type="button" class="btn btn-outline-danger btn-lg">
+          {{item?.price}}
+        </button>
+      </li>
+      @for (feature of item?.features; track feature) {
+      <li class="list-group-item">
+        {{feature}}
+      </li>
+      }
+    </ul>
+  </div>
+</div>
